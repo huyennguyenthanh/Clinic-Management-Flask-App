@@ -4,11 +4,10 @@ A web-app project for Database subject in university.
 
 This app using : PostgreSQL + Flask
 
-1. About database
+/b1. About database/
 First, you need to have a database PostgreSQL (pdAdmin4)
 
-You can find create-table-sql in file database.sql
-And a simple data to test app.
+You can find create-table-sql in file database.sql, and a simple data to test app.
 
 The trigger code is in file trigger.sql
 
