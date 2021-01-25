@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        * {
+            margin:0px;
+            padding:0px;
+        }
+       
+        .clearfix:after {
+            display:block;
+            clear:both;          
+        }
+        .wrapper {
+            width:100%;
+            box-shadow:0px 1px 3px rgba(0,0,0,0.2); 
+            background:#3e3436;
+        }
+         
+        /*----- Phần menu -----*/
+        .menu {
+            width:1000px;
+            margin:0px auto;
+            background:rgb(15, 109, 117);
+            height: 50px;
+            margin-top: 150px;
+        }
+        .menu li {
+            margin:0px;
+            list-style:none;
+            font-family:'Ek Mukta';
+        }
+        .menu a {
+            transition:all linear 0.15s;
+            color:#919191;
+            text-decoration:none;
+        }
+        .menu li:hover > a, .menu .current-item > a {
+            text-decoration:none;
+            color:#be5b70;
+        } 
+        .menu .arrow {
+            font-size:11px;
+            line-height:0%;
+        } 
+        /*----- css cho phần menu cha -----*/
+        .menu > ul > li {
+            float:left;
+            display:inline-block;
+            position:relative;
+            font-size:19px;
+        }
+        .menu > ul > li > a {
+            padding:10px 40px;
+            display:inline-block;
+            color:white;
+        }
+        .menu > ul > li:hover > a, .menu > ul > .current-item > a {
+            background:#2e2728;
+        }
+        /*----css cho menu con----*/
+        .menu li:hover .sub-menu {
+            z-index:1;
+            opacity:1;
+        }
+        .sub-menu {
+            width:160%;
+            padding:5px 0px;
+            position:absolute;
+            top:100%;
+            left:0px;
+            z-index:-1;
+            opacity:0;
+            transition:opacity linear 0.15s;
+            box-shadow:0px 2px 3px rgba(0,0,0,0.2);
+            background:#2e2728;
+        }
+        .sub-menu li {
+            display:block;
+            font-size:16px;
+        }
+        .sub-menu li a {
+            padding:10px 30px;
+            display:block;
+        }
+        .sub-menu li a:hover, .sub-menu .current-item a {
+            background:#3e3436;
+        }
+        </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="menu" style="width: 1200px;">
+            <ul class="clearfix">
+               
+                <li>
+                    <a href="{{url_for('doctor_page')}}">Doctors<span class="arrow">▼</span></a>
+     
+                  
+                </li>
+                <li><a href="{{url_for('patient_page')}}">Patients<span class="arrow">▼</span></a>
+                   
+                </li>
+                <li><a href="{{url_for('medicine_page')}}">Medicines<span class="arrow">▼</span></a>
+                    
+                </li>
+                <li><a href="{{url_for('service_page')}}">Services<span class="arrow">▼</span></a>
+                    
+
+                </li>
+                <li><a href="{{url_for('appointment_page')}}">Appointments<span class="arrow">▼</span></a>
+                    
+                </li>
+                <li><a href="{{url_for('income_expense')}}">Expense<span class="arrow">▼</span></a>
+                    
+                </li>
+               
+            </ul>
+        </nav>
+    </div>
+    
+    
+
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="doctor_name"
+                   placeholder="Tìm kiếm bác sĩ theo tên..." />
+        </div>
+        <div>
+            <input type="submit" value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Add new doctors"
+           onclick="location.href = '{{ url_for('insert_new_doctor') }}'">
+    <input type="button"
+           value="Xem bảng lương"
+           onclick="location.href = '{{ url_for('doctor_salary') }}'">
+</form>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên bác sĩ</th>
+        <th>Tình trạng</th>
+    </tr>
+    {% for d in doctors %}
+    <tr>
+        <td>{{ d['doctor_id'] }}</td>
+        <td>
+            <a href="{{ url_for('doctor_detail', doctor_id = d['doctor_id']) }}">
+            {{ d['doctor_name'] }}</a>
+        </td>
+        <td>
+            {% if d['is_work']%}
+            <p>Đang làm việc</p>
+            {% else %}
+            <p style="color: red">Đã nghỉ việc</p>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+</html>

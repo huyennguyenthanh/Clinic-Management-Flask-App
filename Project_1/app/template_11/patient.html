@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="patient_name"
+                   placeholder="Nhập tên bệnh nhân..." />
+        <div>
+            <input type="submit" value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Bệnh nhân mới"
+           onclick="location.href = '{{ url_for('insert_new_patient') }}'">
+</form>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên bệnh nhân</th>
+        <th>Ngày sinh</th>
+        <th>Nam/Nữ</th>
+        <th>Số điện thoại</th>
+        <th>Hồ sơ bệnh án</th>
+    </tr>
+    {% for m in patients %}
+    <tr>
+        <td>{{ m['patient_id'] }}</td>
+        <td>{{ m['patient_name'] }}</td>
+        <td>{{ m['birthday'] }}</td>
+        <td>{{ m['gender'] }}</td>
+        <td>{{ m['phone_number'] }}</td>
+        <td>
+            <a href="{{ url_for('patient_detail', patient_id = m['patient_id']) }}">
+            Xem thông tin chi tiết</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

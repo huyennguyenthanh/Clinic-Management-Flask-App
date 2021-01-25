@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<h1>Các thuốc đã kê trong đơn {{ id }}</h1>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+<!--        <input type="number" id="test" name="demo.test">-->
+<!--        <div id="medicine">-->
+
+<!--        </div>-->
+        <p>
+            {{ form.medicine_name.label }}<br>
+            {{ form.medicine_name(size=32) }}
+        </p>
+        <p>
+            {{ form.quantity.label }}<br>
+            {{ form.quantity(size=32) }}
+        </p>
+        <p>
+            {{ form.medicine_name_1.label }}<br>
+            {{ form.medicine_name_1(size=32) }}
+        </p>
+        <p>
+            {{ form.quantity_1.label }}<br>
+            {{ form.quantity_1(size=32) }}
+        </p>
+        <p>
+            {{ form.medicine_name_2.label }}<br>
+            {{ form.medicine_name_2(size=32) }}
+        </p>
+        <p>
+            {{ form.quantity_2.label }}<br>
+            {{ form.quantity_2(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+<script>
+$(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#medicine_autocomplete').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+$(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#medicine1_autocomplete').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+$(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#medicine2_autocomplete').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+</script>
+</body>
+</html>

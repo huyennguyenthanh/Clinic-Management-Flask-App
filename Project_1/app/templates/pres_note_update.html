@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h1>Chẩn đoán và ghi chú đơn {{ id }}</h1>
+    <form action="" method="post" novalidate>
+        <p>
+            {{ form.note.label }}<br>
+            {{ form.note(size=32) }}
+
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

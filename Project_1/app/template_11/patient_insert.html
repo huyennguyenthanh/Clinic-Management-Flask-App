@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Thông tin bệnh nhân mới</h1>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+        <p>
+            {{ form.patient_name.label }}<br>
+            {{ form.patient_name(size=32) }}
+        </p>
+        <p>
+            {{ form.birthday.label }}<br>
+            <h5>Ví dụ : sinh ngày 20 tháng 1 năm 2000. Nhập: 2000-01-20</h5>
+            {{ form.birthday(size=32) }}
+        </p>
+        <p>
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(size=32) }}
+        </p>
+        <p>
+            {{ form.gender.label }}<br>
+            {{ form.gender }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new medicine</title>
+</head>
+<body>
+
+<h1>Add new medicine here</h1>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+        <p>
+            {{ form.medicine_name.label }}<br>
+            {{ form.medicine_name(size=32) }}
+            {% for error in form.medicine_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.unit_price.label }}<br>
+            {{ form.unit_price(size=32) }}
+            {% for error in form.unit_price.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.stock_quantity.label }}<br>
+            {{ form.stock_quantity(size=32) }}
+            {% for error in form.stock_quantity.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

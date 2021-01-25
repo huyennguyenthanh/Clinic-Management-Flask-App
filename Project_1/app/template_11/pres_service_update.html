@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+       <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+</head>
+<body>
+
+<h1>Thông tin đơn khám bệnh hôm nay</h1>
+<h2>Cập nhật các dịch vụ đã làm trong cuộc hẹn số {{ id }}</h2>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+        <p>
+            {{ form.service_name.label }}<br>
+            {{ form.service_name(size=32) }}
+        </p>
+            {{ form.quantity.label }}<br>
+            {{ form.quantity(size=32) }}
+        </p>
+        <p>
+            {{ form.service_name_1.label }}<br>
+            {{ form.service_name_1(size=32) }}
+        </p>
+        <p>
+            {{ form.quantity_1.label }}<br>
+            {{ form.quantity_1(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+<script>
+$(document).ready(function() {
+    $('#service_name').select2({
+        placeholder: "{{ form.service_name.label.text }}",
+        allowClear: true,
+        "width": "style"
+    });
+    $('#service_name_1').select2({
+        placeholder: "{{ form.service_name_1.label.text }}",
+        allowClear: true,
+        "width": "style"
+    });
+
+});
+
+</script>
+</body>
+</html>

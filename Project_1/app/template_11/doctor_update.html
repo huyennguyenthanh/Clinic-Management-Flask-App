@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Cập nhật thông tin bác sĩ</h1>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+        <p>
+            {{ form.doctor_name.label }}<br>
+            {{ form.doctor_name(size=32) }}
+        </p>
+        <p>
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(size=32) }}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

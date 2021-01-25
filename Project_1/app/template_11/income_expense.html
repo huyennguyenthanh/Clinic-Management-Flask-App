@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="which_year"
+                   placeholder="Thu chi theo năm..." />
+        </div>
+        <div class="form-group">
+            <input class="form-control"
+                   name="which_month"
+                   placeholder="Thu chi theo tháng..." />
+        </div>
+        <div>
+            <input type="submit"
+                   value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+<h1> TỔNG TIỀN THU VÀO </h1>
+<table class="table">
+    <!--
+    tr = table row
+    td = table data
+    th = table heading
+    -->
+    <tr>
+        <th>Năm </th>
+        <th>Tháng </th>
+        <th>Tiền thuốc </th>
+        <th>Tiền khám chữa bệnh</th>
+        <th>Tổng thu</th>
+    </tr>
+    {% for i in income %}
+    <tr>
+        <td>{{ i['Year'] }}</td>
+        <td>{{ i['Month'] }}</td>
+        <td>{{ i['SUM(medicine_fee)'] }}</td>
+        <td>{{ i['SUM(treatment_fee)'] }}</td>
+        <td>{{ i['SUM(total_price)'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<h1> CHI PHÍ TRẢ TIỀN LƯƠNG </h1>
+<table class="table">
+    <!--
+    tr = table row
+    td = table data
+    th = table heading
+    -->
+    <tr>
+        <th>ID</th>
+        <th>Tên bác sĩ</th>
+        <th>Tháng </th>
+        <th>Năm </th>
+        <th>Tổng lương</th>
+    </tr>
+    {% for e in expense %}
+    <tr>
+        <td>{{ e['doctor_id'] }}</td>
+        <td>{{ e['doctor_name'] }}</td>
+        <td>{{ e['which_month'] }}</td>
+        <td>{{ e['which_year'] }}</td>
+        <td>{{ e['salary'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h3>
+    <ul>
+        <li> Tổng lương trả cho các bác sĩ: {{ total_salary }} VND</li>
+    </ul>
+</h3>
+</body>
+</html>

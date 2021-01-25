@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+<body>
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="patient_name"
+                   placeholder="Tìm kiếm tên bệnh nhân..." />
+        </div>
+        <div class="form-group">
+            <input class="form-control"
+                   name="patient_name"
+                   placeholder="Tìm kiếm tên bác sĩ..." />
+        </div>
+        <div>
+            <input type="submit" value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Mã ID lịch hẹn</th>
+        <th>Tên bệnh nhân</th>
+        <th>Tên bác sĩ</th>
+        <th>Thời gian hẹn</th>
+    </tr>
+    {% if appointments == 0 %}
+    <p>Không có lịch hẹn nào</p>
+    {% else %}
+    {% for a in appointments %}
+    <tr>
+        <td>{{ a['id'] }}</td>
+        <td>
+            <a href="{{ url_for('patient_detail', patient_id = a['patient_id']) }}">
+            {{ a['patient_name'] }}</a>
+        </td>
+        <td>{{ a['doctor_name'] }}</td>
+        <td>{{ a['date_time'] }}</td>
+
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+</body>
+</html>

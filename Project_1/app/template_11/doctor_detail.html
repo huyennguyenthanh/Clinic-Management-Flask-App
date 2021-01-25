@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">{{ d['doctor_name'] }}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                <ul>
+                    <li>{{ d['doctor_name'] }}</li>
+                    <li>Số điện thoại liên hệ : {{ d['phone_number'] }}</li>
+                    <li>Ngày nghỉ cố định : thứ {{ d['day_off'] }} hàng tuần</li>
+                    <li>{{ d['description'] }}</li>
+                </ul>
+            </h3>
+        </div>
+    </div>
+</div>
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Cập nhật thông tin bác sĩ"
+           onclick="location.href = '{{ url_for('doctor_update', doctor_id = d['doctor_id']) }}'">
+</form>
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Quay lại trang chủ"
+           onclick="location.href = 'http://127.0.0.1:5000/doctors'">
+</form>
+</body>
+</html>

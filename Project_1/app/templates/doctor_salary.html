@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="doctor_name"
+                   placeholder="Tìm kiếm lương bác sĩ theo tên..." />
+        </div>
+        <div class="form-group">
+            <input class="form-control"
+                   name="which_year"
+                   placeholder="Năm..." />
+        </div>
+        <div class="form-group">
+            <input class="form-control"
+                   name="which_month"
+                   placeholder="Tháng..." />
+        </div>
+        <div>
+            <input type="submit"
+                   value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên bác sĩ</th>
+        <th>Tháng </th>
+        <th>Năm </th>
+        <th>Số bệnh nhân theo tháng/năm</th>
+        <th>Lương tháng</th>
+    </tr>
+    {% for d in doctors %}
+    <tr>
+        <td>{{ d['doctor_id'] }}</td>
+        <td>{{ d['doctor_name'] }}</td>
+        <td>{{ d['which_month'] }}</td>
+        <td>{{ d['which_year'] }}</td>
+        <td>{{ d['num_patient'] }}</td>
+        <td>{{ d['salary'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

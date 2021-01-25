@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center">Hồ sơ bệnh án mã {{ d['patient_id'] }}</h2>
+    <h1 class="text-center">{{ d['patient_name'] }}</h1>
+</div>
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Đặt lịch hẹn"
+           onclick="location.href = '{{ url_for('histories_insert', patient_id = d['patient_id'], action='new_app') }}'">
+</form>
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Quay lại trang chủ"
+           onclick="location.href = '{{ url_for('patient_page')}}'">
+</form>
+{% if not pres %}
+<p>Bệnh nhân chưa có tiền sử khám bệnh tại phòng khám</p>
+{% else %}
+
+{% for p in pres %}
+<form>
+    <h1>------------------------------------------</h1>
+    <p>Mã đơn khám bệnh : {{ p['id'] }}</p>
+    <p>Ngày khám bệnh : {{ p['date'] }}</p>
+    <p>Bác sĩ khám bệnh : {{ p['doctor_name'] }}</p>
+    <p>Ghi chú/Chẩn đoán : {{ p['disease_name'] }}</p>
+
+    {% if p['is_done'] %}
+
+
+    <div>
+        {% if p['service_name'] == 0 %}
+        <p>không sử dụng dịch vụ</p>
+        {% else %}
+        {% for s in p['service_name'] %}
+        <li> Dịch vụ : {{ s[0] }} Giá : {{ s[2] }}Số lượng {{ s[1] }}</li>
+        {% endfor %}
+        {% endif %}
+        <p>Chi phí khám : {{ p['treatment_fee'] }} VND</p>
+
+
+        {% if p['medicine_name'] == 0 %}
+        <p>không kê thuốc</p>
+        {% else %}
+        {% for m in p['medicine_name'] %}
+        <li> Thuốc : {{ m[0] }} Giá : {{ m[2] }} Số lượng {{ m[1] }}</li>
+        {% endfor %}
+        {% endif %}
+        <p>Chi phí thuốc : {{ p['medicine_fee'] }} VND</p>
+
+    </div>
+
+    {% if not p['is_paid'] %}
+    <a href="{{ url_for('prescription_note_update', patient_id = d['patient_id'], id = p['id'] ) }}">
+            Cập nhật ghi chú/chẩn đoán
+        </a>
+    <p></p>
+    <a href="{{ url_for('prescription_service_update', patient_id = d['patient_id'],id = p['id']) }}">
+            Thêm các dịch vụ đã được dùng
+        </a>
+    <p></p>
+    <a href="{{ url_for('prescription_medicine_update', patient_id = d['patient_id'], id = p['id'] ) }}">
+            Thêm các thuốc đã được kê trong đơn
+        </a>
+    {% endif %}
+
+
+    <h3>Tổng phí khám bệnh {{ p['total_price'] }} VND</h3>
+    {% if p['is_paid'] %}
+    <p style="color: red;">Đã thanh toán</p>
+    {% else %}
+    <p style="color: red;">Chưa thanh toán</p>
+    <input type="button"
+           value="Thanh toán"
+           onclick="location.href = '{{ url_for('prescription_paid', patient_id = d['patient_id'] ,id = p['id'])}}'">
+    {% endif %}
+
+    {% else %}
+    <p>Cuộc hẹn chưa diễn ra</p>
+    <input type="button"
+           value="Cập nhật cuộc hẹn"
+           onclick="location.href = '{{ url_for('histories_update', patient_id = d['patient_id'], id = p['id']) }}'">
+
+    <input type="button"
+           value="Xác nhận cuộc hẹn và cập nhật hồ sơ"
+           onclick="location.href = '{{ url_for('histories_confirm', patient_id = d['patient_id'], id = p['id']) }}'">
+
+    {% endif %}
+
+</form>
+{% endfor %}
+{% endif %}
+<p>----------------------------------------------------------------------------------</p>
+<form>
+    <input type="button"
+           value="Thêm đơn thuốc mới"
+           onclick="location.href = '{{ url_for('histories_insert', patient_id = d['patient_id'], action='new_pre') }}'">
+</form>
+</body>
+</html>

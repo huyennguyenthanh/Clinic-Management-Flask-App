@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+</head>
+<body>
+    <style>
+        .container{
+            max-width: 760px;
+        }
+    </style>
+<div class="container">
+    <h2 class="text-center" >Hồ sơ bệnh án mã {{ d['patient_id'] }}</h2>
+    <p> <strong>Họ và tên :</strong> {{ d['patient_name'] }}</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <form>
+            <!--location : not open new tab-->
+            <input type="button"
+                value="Đặt lịch hẹn"
+                onclick="location.href = '{{ url_for('histories_insert', patient_id = d['patient_id'], action='new_app') }}'" class="btn btn-danger">
+            </form>
+        </div>
+        <div class="col-md-2">
+            <form>
+            <!--location : not open new tab-->
+            <input type="button"
+                value="Quay lại trang chủ"
+                onclick="location.href = '{{ url_for('patient_page')}}'" class="btn btn-danger">
+            </form>
+        </div>
+    </div>
+    {% if not pres %}
+    <p>Bệnh nhân chưa có tiền sử khám bệnh tại phòng khám</p>
+    {% else %}
+</div>
+
+
+{% for p in pres %}
+<div class="container center-form">
+    <form>
+       <hr>
+        <p>Mã đơn khám bệnh : {{ p['id'] }}</p>
+        <p>Ngày khám bệnh   : {{ p['date'] }}</p>
+        <p>Bác sĩ khám bệnh : {{ p['doctor_name'] }}</p>
+        <p>Chẩn đoán        : {{ p['disease_name'] }}</p>
+        {% if p['is_done'] %}
+        <div>  
+            {% if p['service_name'] == 0 %}
+            <p>không sử dụng dịch vụ</p>
+            {% else %}
+            <li> Dịch vụ : </li>  
+            
+            {% for s in p['service_name'] %}
+            {{ s[0] }} Giá {{ s[2] }} VND - Số lượng {{ s[1] }}<br>
+            {% endfor %}
+            {% endif %}
+            <p>Chi phí khám : {{ p['treatment_fee'] }} VND</p>   
+            {% if p['medicine_name'] == 0 %}
+            <p>không kê thuốc</p>
+            {% else %}         
+            <li> Thuốc :</li>
+            {% for m in p['medicine_name'] %}
+            {{ m[0] }} Giá {{ m[2] }} VND - Số lượng {{ m[1] }}<br>
+             {% endfor %}
+             {% endif %}
+          
+            <p>Chi phí thuốc : {{ p['medicine_fee'] }} VND</p>
+        </div>
+        {% if not p['is_paid'] %}
+    <a href="{{ url_for('prescription_note_update', patient_id = d['patient_id'], id = p['id'] ) }}">
+            Cập nhật ghi chú/chẩn đoán
+        </a>
+    <p></p>
+    <a href="{{ url_for('prescription_service_update', patient_id = d['patient_id'],id = p['id']) }}">
+            Thêm các dịch vụ đã được dùng
+        </a>
+    <p></p>
+    <a href="{{ url_for('prescription_medicine_update', patient_id = d['patient_id'], id = p['id'] ) }}">
+            Thêm các thuốc đã được kê trong đơn
+        </a>
+    {% endif %}
+        <h3>Tổng phí khám bệnh {{ p['total_price'] }} VND</h3>  
+      
+        {% if p['is_paid'] %}
+    <p style="color: red;">Đã thanh toán</p>
+    {% else %}
+    <p style="color: red;">Chưa thanh toán</p>
+    <input type="button"
+    value="Thanh toán"
+    onclick="location.href = '{{ url_for('prescription_paid', patient_id = d['patient_id'] ,id = p['id'])}}'">
+{% endif %}
+
+{% else %}
+<p>Cuộc hẹn chưa diễn ra</p>
+
+    <form>
+<input type="button"
+    value="Cập nhật cuộc hẹn"
+    onclick="location.href = '{{ url_for('histories_update', patient_id = d['patient_id'], id = p['id']) }}'  "class="btn btn-danger">
+    </form>   
+<br>
+<input type="button"
+    value="Xác nhận cuộc hẹn và cập nhật hồ sơ"
+    onclick="location.href = '{{ url_for('histories_confirm', patient_id = d['patient_id'], id = p['id'], doctor_id = p['doctor_id']) }}'"  class="btn btn-danger">
+</form>
+{% endif %}
+
+    </form>
+    {% endfor %}
+{% endif %}
+    <hr>
+      <form class="text-center">
+            <input type="button"
+                value="Thêm đơn thuốc mới"
+                onclick="location.href = '{{ url_for('histories_insert', patient_id = d['patient_id'], action='new_pre') }}'" class="btn btn-success">
+        </form>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+</html>

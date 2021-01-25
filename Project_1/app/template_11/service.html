@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="service_name"
+                   placeholder="Tìm kiếm thuốc theo tên dịch vụ..." />
+        </div>
+        <div>
+            <input type="submit" value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên dịch vụ</th>
+        <th>Giá dịch vụ</th>
+    </tr>
+    {% for s in services %}
+    <tr>
+        <td>{{ s['service_id'] }}</td>
+        <td>{{ s['service_name'] }}</td>
+        <td>{{ s['price'] }} VND</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

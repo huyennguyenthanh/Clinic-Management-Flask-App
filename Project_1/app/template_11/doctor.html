@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="doctor_name"
+                   placeholder="Tìm kiếm bác sĩ theo tên..." />
+        </div>
+        <div>
+            <input type="submit" value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Add new doctors"
+           onclick="location.href = '{{ url_for('insert_new_doctor') }}'">
+    <input type="button"
+           value="Xem bảng lương các bác sĩ"
+           onclick="location.href = '{{ url_for('doctor_salary') }}'">
+</form>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên bác sĩ</th>
+    </tr>
+    {% for d in doctors %}
+    <tr>
+        <td>{{ d['doctor_id'] }}</td>
+        <td>
+            <a href="{{ url_for('doctor_detail', doctor_id = d['doctor_id']) }}">
+            {{ d['doctor_name'] }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

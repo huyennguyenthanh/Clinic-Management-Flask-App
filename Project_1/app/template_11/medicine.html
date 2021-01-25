@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicines</title>
+
+</head>
+<body>
+<div>
+    <form>
+        <div class="form-group">
+            <input class="form-control"
+                   name="medicine_id"
+                   placeholder="Tìm kiếm thuốc theo mã ID..." />
+        </div>
+        <div class="form-group">
+            <input class="form-control"
+                   name="medicine_name"
+                   placeholder="Tìm kiếm thuốc theo tên thuốc..." />
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input type="number"
+                       name="from_price"
+                       class="form-control"
+                       placeholder="Tìm kiếm thuốc theo giá (giá bắt đầu)"/>
+            </div>
+            <div class="col-md-6">
+                <input type="number"
+                       name="to_price"
+                       class="form-control"
+                       placeholder="Tìm kiếm thuốc theo giá (giá bắt đầu)"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control"
+                   name="stock_quantity"
+                   placeholder="Lọc các thuốc theo số lượng còn trong kho..." />
+        </div>
+        <div>
+            <input type="submit" value="Tìm kiếm"
+                   class="btn btn-danger" />
+        </div>
+    </form>
+</div>
+
+<form>
+    <!--location : not open new tab-->
+    <input type="button"
+           value="Add new medicines"
+           onclick="location.href = '{{ url_for('insert_new_medicine') }}'">
+</form>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Tên thuốc</th>
+        <th>Giá thuốc</th>
+        <th>Số lượng</th>
+        <th>Edit</th>
+    </tr>
+    {% for m in medicines %}
+    <tr>
+        <td>{{ m['medicine_id'] }}</td>
+        <td>{{ m['medicine_name'] }}</td>
+        <td>{{ m['unit_price'] }} VND</td>
+        <td>{{ m['stock_quantity'] }}</td>
+        <td>
+            <a href="{{ url_for('medicine_update', medicine_id = m['medicine_id']) }}">
+            Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

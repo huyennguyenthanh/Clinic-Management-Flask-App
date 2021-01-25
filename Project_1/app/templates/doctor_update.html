@@ -1,0 +1,37 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+
+<body>
+
+<h1>Cập nhật thông tin bác sĩ</h1>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+        <p>
+            {{ form.doctor_name.label }}<br>
+            {{ form.doctor_name(size=32) }}
+        </p>
+        <p>
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(size=32) }}
+        </p>
+        <p> {{ form.description.label }}<br>
+            {{ form.description(style="width: 350px; height: 60px;") }}
+        </p>
+        <p>
+            {{ form.is_work.label }}<br>
+            {{ form.is_work(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+        
+    </form>
+</body>
+</html>

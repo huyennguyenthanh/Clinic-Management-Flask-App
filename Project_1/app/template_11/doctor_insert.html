@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Thông tin bác sĩ mới</h1>
+    <form action="" method="post" novalidate>
+        <!--{{ form.hidden_tag() }}-->
+        <p>
+            {{ form.doctor_name.label }}<br>
+            {{ form.doctor_name(size=32) }}
+        </p>
+        <p>
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>
+            {{ form.day_off.label }}<br>
+            <h6>Ví dụ : nghỉ thứ 4 điền '4'. nghỉ thứ 2 và thứ 6 điền '26'. </h6>
+            <h6> nghỉ CN điền '8'. Nếu không nghỉ ngày nào điền '0'</h6>
+            {{ form.day_off(size=32) }}
+
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=32) }}
+        </p>
+        <p>
+            {{ form.is_manage.label }}<br>
+            {{ form.is_manage(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>
