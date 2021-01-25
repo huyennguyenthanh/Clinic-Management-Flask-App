@@ -64,5 +64,17 @@ CREATE TRIGGER quantity_change
 AFTER INSERT ON pre_medicines
 FOR EACH ROW
 EXECUTE PROCEDURE change_stock_quantity();
+					   
+/****************************************************************************************************************************/
+create view discount as
+	select distinct patient_name,total_price,phone_number,
+	CASE
+            WHEN total_price >= 20000000 THEN 0.1
+            WHEN total_price < 20000000 AND total_price >= 10000000 THEN 0.05
+            ELSE 0
+        END discount_rate
+	from patients NATURAL JOIN histories
+	where is_paid = true;	 
+select * from discount;
 
 
