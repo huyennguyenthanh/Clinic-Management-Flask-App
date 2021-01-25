@@ -4,7 +4,7 @@ A web-app project for Database subject in university.
 
 This app using : PostgreSQL + Flask
 
-/b1. About database/
+1. About database
 First, you need to have a database PostgreSQL (pdAdmin4)
 
 You can find create-table-sql in file database.sql, and a simple data to test app.
