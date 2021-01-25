@@ -12,6 +12,6 @@ About me, I using Pycharm. So you can open Terminal in Pycharm :
 + create a endpoint : $ export endpoint=main.py
 + $ flask run
 
-2. All info about project is in file report.
+2. All info about project is in file report. A simple data is in file database.sql
 
 Thanks !
