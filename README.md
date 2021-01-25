@@ -5,15 +5,14 @@ A web-app project for Database subject in university.
 This app using : PostgreSQL + Flask
 
 1. About database
+
 First, you need to have a database PostgreSQL (pdAdmin4)
 
 Read about databse design in file report.pdf
 
 Note : in the report, we have a column in table histories called "note"
 
-But in the source code, it is calles "disease_name"
-
-I'll update soon.
+But in the source code, it is calles "disease_name". I'll update soon.
 
 
 
