@@ -8,9 +8,14 @@ This app using : PostgreSQL + Flask
 First, you need to have a database PostgreSQL (pdAdmin4)
 
 Read about databse design in file report.pdf
+
 Note : in the report, we have a column in table histories called "note"
+
 But in the source code, it is calles "disease_name"
+
 I'll update soon.
+
+
 
 You can find create-table-sql in file database.sql, and a simple data to test app.
 
