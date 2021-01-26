@@ -93,9 +93,9 @@ CREATE TABLE salary_table (
 DROP TABLE IF EXISTS managers CASCADE;
 CREATE TABLE managers (
 	manager_id serial ,
-	manager_name varchar(50) ,
-	phone_number varchar(15) ,
-	password varchar(20) 
+	manager_name varchar(64) ,
+	phone_number varchar(16) ,
+	password varchar(255) 
 );
 
 
@@ -238,13 +238,9 @@ INSERT INTO services(service_name,price) VALUES ('Cắt lợi(nướu) thẩm m�
 
 
 /* INSERT TABLE "managers" */
-INSERT INTO managers(manager_name,phone_number,password) VALUES('Nguyen Van An','0912.345.678','an1234'); -->DOCTORS + CO-FOUNDER (DONG SANG LAP)
-INSERT INTO managers(manager_name,phone_number,password) VALUES('Tran Thi Binh','0912.456.789','binh2345'); -->DOCTORS + CO-FOUNDER (DONG SANG LAP)
-INSERT INTO managers(manager_name,phone_number,password) VALUES('Vu Ngoc Anh','0945.987.678','anh1234'); -->DOCTORS + CO-FOUNDER (DONG SANG LAP)
-INSERT INTO managers(manager_name,phone_number,password) VALUES('Truong Thanh Bao','0989.345.987','bao2345'); -->DOCTORS + CO-FOUNDER (DONG SANG LAP)
-INSERT INTO managers(manager_name,phone_number,password) VALUES('Ho Minh Nguyet','0945.100.100','nguyet0101'); -->THU KY (SECRETARY)
-INSERT INTO managers(manager_name,phone_number,password) VALUES('Truong Dang Khoa','0919.876.921','khoa1234'); -->DIRECTOR/OWNER (ONG CHU)
-
+/* Tài khoản cũng cần phải được mã hóa mật khẩu, nên dữ liệu của một tài khoản được tạo ra trên web*/
+/* Không có câu lệnh insert sql*/
+/* Muốn đăng nhập vào hệ thống, bạn cần đăng kí trước*/
 
 /* foreign key of TABLE "histories" */
 ALTER TABLE histories ADD CONSTRAINT histories_fk0 FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id) ON UPDATE CASCADE;
