@@ -23,9 +23,11 @@ The trigger code is in file trigger.sql
 
 About me, I using Pycharm. So you can open Terminal in Pycharm :
 + install flask, flask-login, flask-wtf,vv... in venv
-+ create a endpoint : $ export endpoint=main.py
++ create a endpoint : $ export flask_app=main.py (in Ubuntu, in Windows, alter "export" by "set")
 + $ flask run
 
 3. All info about project is in file report. A simple data is in file database.sql
+
+4. Sign up before sign in this app.
 
 Thanks !
