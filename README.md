@@ -4,7 +4,7 @@ A web-app project for Database subject in university.
 
 This app using : PostgreSQL + Flask
 
-1. About database
+## 1. About database
 
 First, you need to have a database PostgreSQL (pdAdmin4)
 
@@ -28,6 +28,6 @@ About me, I using Pycharm. So you can open Terminal in Pycharm :
 
 3. All info about project is in file report. A simple data is in file database.sql
 
-4. Sign up before sign in this app.
+## 4. Sign up before sign in this app.
 
 Thanks !
